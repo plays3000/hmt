@@ -318,8 +318,8 @@ export function iou_tensor(bboxes1 : number[][], bboxes2 : number[][]) : number[
   const area1 = bbox_area(bboxes1T);
   const area2 = bbox_area(bboxes2T);
 
-  const bboxes1_lt: tf.Tensor3D = tf.expandDims(bboxes1T, 1).slice([0,0,0], [-1,-1, 2]);
-  const bboxes1_rb: tf.Tensor3D = tf.expandDims(bboxes1T, 1).slice([0,0,2], [-1,-1, 2]);
+  const bboxes1_lt = tf.expandDims(bboxes1T, 1).slice([0,0,0], [-1,-1, 2]) as  tf.Tensor3D;
+  const bboxes1_rb = tf.expandDims(bboxes1T, 1).slice([0,0,2], [-1,-1, 2]) as tf.Tensor3D;
   const bboxes2_lt = bboxes2T.slice([0, 0], [-1, 2]);
   const bboxes2_rb = bboxes2T.slice([0, 2], [-1, 2]);
   const lt = tf.maximum(bboxes1_lt, bboxes2_lt);
@@ -334,7 +334,6 @@ export function iou_tensor(bboxes1 : number[][], bboxes2 : number[][]) : number[
   const iou = inter.div(union);
   const iouArr = iou.arraySync();
   tf.engine().endScope();
-
   return iouArr;
 }
 export function iou(region0: number[], region1: number[]) {

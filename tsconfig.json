@@ -25,7 +25,7 @@
     "./src/**/*.ts",
     "src/index.ts",
     "types.d.ts",
-    "src/util/util.ㅅㄴ"
+    "src/util/util.ts"
   ], // 컴파일 대상 파일 지정
   "exclude": ["node_modules"] // 제외할 파일 지정
 }
