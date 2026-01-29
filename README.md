@@ -9,4 +9,4 @@
 
 ## 배포명령어
 gcloud init
-gcloud app deploy
+gcloud app deploy"# hmt" 
