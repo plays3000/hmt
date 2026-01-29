@@ -326,13 +326,13 @@ export function iou_tensor(bboxes1 : number[][], bboxes2 : number[][]) : number[
   const rb = tf.minimum(bboxes1_rb, bboxes2_rb);
 
   const wh : tf.Tensor3D = tf.maximum(tf.sub(rb, lt), 0);   // [N, M, 2]
-  const w = tf.squeeze(wh.slice([0,0,0],[-1,-1,1]));
-  const h = tf.squeeze(wh.slice([0,0,1],[-1,-1,1]));
-  const inter = tf.mul(w,h);
-  const union = tf.expandDims(area1,1).add(area2).sub(inter);
+  const w : tf.Tensor2D = tf.squeeze(wh.slice([0,0,0],[-1,-1,1]));
+  const h : tf.Tensor2D = tf.squeeze(wh.slice([0,0,1],[-1,-1,1]));
+  const inter : tf.Tensor2D = tf.mul(w,h);
+  const union : tf.Tensor2D = tf.expandDims(area1,1).add(area2).sub(inter);
 
-  const iou = inter.div(union);
-  const iouArr = iou.arraySync();
+  const iou : tf.Tensor2D = inter.div(union);
+  const iouArr: number[][] = iou.arraySync();
   tf.engine().endScope();
   return iouArr;
 }
